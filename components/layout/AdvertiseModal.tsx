@@ -47,7 +47,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
               <Sparkles className="w-3.5 h-3.5" /> High ROI Campaigns
             </span>
           </div>
-          <h2 className="text-xl font-bold font-serif text-white">Advertise on Flipkart / Aether</h2>
+          <h2 className="text-xl font-bold font-serif text-white">Advertise on Aether</h2>
           <p className="text-xs text-zinc-400 mt-1">
             Reach millions of high-intent luxury shoppers across premium collections and discovery feeds.
           </p>

@@ -324,7 +324,7 @@ export function Navbar() {
                       className="w-full flex items-center gap-3.5 px-4 py-2.5 text-zinc-700 hover:bg-zinc-50 hover:text-black transition-colors font-medium text-left cursor-pointer group"
                     >
                       <Presentation className="w-4 h-4 text-zinc-600 group-hover:text-purple-600 shrink-0" />
-                      <span>Advertise on Flipkart</span>
+                      <span>Advertise on Aether</span>
                     </button>
                   </div>
                 </div>
@@ -605,7 +605,7 @@ export function Navbar() {
                     className="w-full flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium text-left"
                   >
                     <span className="flex items-center gap-2.5">
-                      <Presentation className="w-4 h-4 text-purple-600" /> Advertise on Flipkart
+                      <Presentation className="w-4 h-4 text-purple-600" /> Advertise on Aether
                     </span>
                     <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
                   </button>
