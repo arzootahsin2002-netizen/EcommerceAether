@@ -2,12 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import './globals.css';
 import { AppProvider } from '@/lib/store';
-import { AnnouncementBar } from '@/components/layout/AnnouncementBar';
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { CartDrawer } from '@/components/layout/CartDrawer';
-import { QuickViewModal } from '@/components/layout/QuickViewModal';
-import { ToastContainer } from '@/components/layout/ToastContainer';
+import { StoreLayoutShell } from '@/components/layout/StoreLayoutShell';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -42,15 +37,9 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
       <body className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-950 selection:text-white">
         <AppProvider>
-          <AnnouncementBar />
-          <Navbar />
-          <main className="flex-1">
+          <StoreLayoutShell>
             {children}
-          </main>
-          <Footer />
-          <CartDrawer />
-          <QuickViewModal />
-          <ToastContainer />
+          </StoreLayoutShell>
         </AppProvider>
       </body>
     </html>
