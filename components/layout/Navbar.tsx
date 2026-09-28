@@ -24,11 +24,14 @@ import {
   MapPin,
   Gift,
   Bell,
-  Store
+  Store,
+  Headphones,
+  Presentation
 } from 'lucide-react';
 import { useApp } from '@/lib/store';
 import { formatPrice } from '@/lib/utils';
 import { CategoryBar } from '@/components/layout/CategoryBar';
+import { AdvertiseModal } from '@/components/layout/AdvertiseModal';
 
 export function Navbar() {
   const router = useRouter();
@@ -38,10 +41,13 @@ export function Navbar() {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [isAdvertiseModalOpen, setIsAdvertiseModalOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const searchContainerRef = useRef<HTMLDivElement>(null);
   const accountRef = useRef<HTMLDivElement>(null);
+  const moreRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll shadow
   useEffect(() => {
@@ -52,7 +58,7 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle click outside for search and account popups
+  // Handle click outside for search, account, and more popups
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (searchContainerRef.current && !searchContainerRef.current.contains(event.target as Node)) {
@@ -60,6 +66,9 @@ export function Navbar() {
       }
       if (accountRef.current && !accountRef.current.contains(event.target as Node)) {
         setIsAccountOpen(false);
+      }
+      if (moreRef.current && !moreRef.current.contains(event.target as Node)) {
+        setIsMoreOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -263,6 +272,64 @@ export function Navbar() {
                 </span>
               )}
             </button>
+
+            {/* More Dropdown (Beside Cart) */}
+            <div ref={moreRef} className="relative">
+              <button
+                onClick={() => setIsMoreOpen(!isMoreOpen)}
+                className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold text-zinc-700 hover:text-black hover:bg-zinc-100 transition-colors cursor-pointer group"
+                aria-label="More Options"
+              >
+                <span>More</span>
+                <ChevronDown className={`w-3.5 h-3.5 text-zinc-400 transition-transform duration-200 ${isMoreOpen ? 'rotate-180 text-zinc-700' : ''}`} />
+              </button>
+
+              {/* More Dropdown Card matching Flipkart Spec */}
+              {isMoreOpen && (
+                <div className="absolute right-0 top-full mt-2 w-60 bg-white rounded-2xl shadow-2xl border border-zinc-200/90 py-2.5 z-50 animate-fadeIn">
+                  <div className="px-4 py-1.5 text-sm font-bold text-zinc-900">
+                    More
+                  </div>
+                  <div className="py-1 text-xs">
+                    <Link
+                      href="/vendor/register"
+                      onClick={() => setIsMoreOpen(false)}
+                      className="flex items-center gap-3.5 px-4 py-2.5 text-zinc-700 hover:bg-zinc-50 hover:text-black transition-colors font-medium group"
+                    >
+                      <Store className="w-4 h-4 text-zinc-600 group-hover:text-amber-700 shrink-0" />
+                      <span>Become a Seller</span>
+                    </Link>
+                    <Link
+                      href="/account?tab=notifications"
+                      onClick={() => setIsMoreOpen(false)}
+                      className="flex items-center gap-3.5 px-4 py-2.5 text-zinc-700 hover:bg-zinc-50 hover:text-black transition-colors font-medium group"
+                    >
+                      <Bell className="w-4 h-4 text-zinc-600 group-hover:text-blue-600 shrink-0" />
+                      <span>Notification Settings</span>
+                    </Link>
+                    <Link
+                      href="/contact"
+                      onClick={() => setIsMoreOpen(false)}
+                      className="flex items-center gap-3.5 px-4 py-2.5 text-zinc-700 hover:bg-zinc-50 hover:text-black transition-colors font-medium group"
+                    >
+                      <Headphones className="w-4 h-4 text-zinc-600 group-hover:text-emerald-600 shrink-0" />
+                      <span>24x7 Customer Care</span>
+                    </Link>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsMoreOpen(false);
+                        setIsAdvertiseModalOpen(true);
+                      }}
+                      className="w-full flex items-center gap-3.5 px-4 py-2.5 text-zinc-700 hover:bg-zinc-50 hover:text-black transition-colors font-medium text-left cursor-pointer group"
+                    >
+                      <Presentation className="w-4 h-4 text-zinc-600 group-hover:text-purple-600 shrink-0" />
+                      <span>Advertise on Flipkart</span>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
 
             {/* User Profile Flyout */}
             <div ref={accountRef} className="relative">
@@ -472,6 +539,7 @@ export function Navbar() {
               </div>
             </div>
 
+            {/* Quick Actions & More Options */}
             <div className="space-y-2 pt-1">
               <Link
                 href="/cart"
@@ -493,16 +561,57 @@ export function Navbar() {
                 </span>
                 <ArrowRight className="w-4 h-4 text-zinc-400" />
               </Link>
-              <Link
-                href="/vendor/login"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center justify-between p-3 rounded-xl bg-amber-50 text-amber-900 text-sm font-bold border border-amber-200"
-              >
-                <span className="flex items-center gap-2">
-                  <Store className="w-4 h-4 text-amber-700" /> Vendor / Seller Hub
-                </span>
-                <ArrowRight className="w-4 h-4 text-amber-700" />
-              </Link>
+              
+              {/* More Menu Items for Mobile */}
+              <div className="pt-2 pb-1">
+                <p className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-2">More Options</p>
+                <div className="grid grid-cols-1 gap-1.5 text-xs">
+                  <Link
+                    href="/vendor/register"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <Store className="w-4 h-4 text-amber-700" /> Become a Seller
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                  </Link>
+                  <Link
+                    href="/account?tab=notifications"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <Bell className="w-4 h-4 text-blue-600" /> Notification Settings
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                  </Link>
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <Headphones className="w-4 h-4 text-emerald-600" /> 24x7 Customer Care
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsAdvertiseModalOpen(true);
+                    }}
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium text-left"
+                  >
+                    <span className="flex items-center gap-2.5">
+                      <Presentation className="w-4 h-4 text-purple-600" /> Advertise on Flipkart
+                    </span>
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400" />
+                  </button>
+                </div>
+              </div>
+
               <Link
                 href="/admin"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -517,6 +626,12 @@ export function Navbar() {
           </div>
         </div>
       )}
+
+      {/* Advertise Modal */}
+      <AdvertiseModal
+        isOpen={isAdvertiseModalOpen}
+        onClose={() => setIsAdvertiseModalOpen(false)}
+      />
     </header>
   );
 }
