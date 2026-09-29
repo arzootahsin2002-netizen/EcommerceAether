@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -33,7 +33,8 @@ import {
   Sparkles,
   Layers,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  ChevronUp
 } from 'lucide-react';
 import { useAdmin } from '@/lib/admin/adminStore';
 
@@ -44,18 +45,26 @@ interface AdminSidebarProps {
   setIsMobileOpen: (open: boolean) => void;
 }
 
-interface NavItem {
+interface SubMenuItem {
   name: string;
   href: string;
+  badge?: number;
+  badgeColor?: string;
+}
+
+interface NavItem {
+  id: string;
+  name: string;
+  href?: string;
   icon: React.ComponentType<{ className?: string }>;
   badge?: number;
   badgeColor?: string;
   count?: number;
+  children?: SubMenuItem[];
 }
 
 interface NavGroup {
   title: string;
-  key?: string;
   items: NavItem[];
 }
 
@@ -68,103 +77,203 @@ export function AdminSidebar({
   const pathname = usePathname();
   const { logout, notifications, vendors, products, orders } = useAdmin();
 
-  // Calculate dynamic badge counts
-  const pendingVendorsCount = vendors.filter((v) => v.verificationStatus === 'Pending' || v.verificationStatus === 'Under Review').length;
-  const pendingProductsCount = products.filter((p) => p.approvalStatus === 'Pending Approval').length;
-  const pendingOrdersCount = orders.filter((o) => o.orderStatus === 'Pending' || o.orderStatus === 'Processing').length;
+  // Dynamic badge counts
+  const pendingVendorsCount = vendors.filter(
+    (v) => v.verificationStatus === 'Pending' || v.verificationStatus === 'Under Review'
+  ).length;
+  const pendingProductsCount = products.filter(
+    (p) => p.approvalStatus === 'Pending Approval'
+  ).length;
+  const pendingOrdersCount = orders.filter(
+    (o) => o.orderStatus === 'Pending' || o.orderStatus === 'Processing'
+  ).length;
   const unreadNotifsCount = notifications.filter((n) => !n.isRead).length;
-
-  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
-    marketplace: true,
-    catalog: true,
-    orders: true
-  });
-
-  const toggleGroup = (key: string) => {
-    setExpandedGroups((prev) => ({ ...prev, [key]: !prev[key] }));
-  };
 
   const navGroups: NavGroup[] = [
     {
       title: 'MAIN',
       items: [
-        { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard }
+        {
+          id: 'dashboard',
+          name: 'Dashboard',
+          href: '/admin/dashboard',
+          icon: LayoutDashboard
+        }
       ]
     },
     {
       title: 'MARKETPLACE',
-      key: 'marketplace',
       items: [
-        { name: 'Vendors', href: '/admin/vendors', icon: Store, count: vendors.length },
-        { name: 'Vendor Verification', href: '/admin/vendors/verification', icon: ShieldCheck, badge: pendingVendorsCount || 42, badgeColor: 'bg-amber-500' },
-        { name: 'Vendor Payouts', href: '/admin/payouts', icon: CreditCard },
-        { name: 'Commission Rates', href: '/admin/commission', icon: Percent }
+        {
+          id: 'vendors',
+          name: 'Vendors',
+          icon: Store,
+          badge: pendingVendorsCount > 0 ? pendingVendorsCount : undefined,
+          badgeColor: 'bg-amber-500',
+          children: [
+            { name: 'All Vendors', href: '/admin/vendors' },
+            {
+              name: 'Vendor Verification',
+              href: '/admin/vendors/verification',
+              badge: pendingVendorsCount || 42,
+              badgeColor: 'bg-amber-500'
+            },
+            { name: 'Vendor Payouts', href: '/admin/payouts' },
+            { name: 'Commission Rates', href: '/admin/commission' }
+          ]
+        },
+        {
+          id: 'users',
+          name: 'Users & Customers',
+          icon: Users,
+          children: [
+            { name: 'Users Directory', href: '/admin/users' },
+            { name: 'User Verification', href: '/admin/users/verification' }
+          ]
+        }
       ]
     },
     {
-      title: 'USERS & CUSTOMERS',
-      key: 'users',
+      title: 'CATALOG & ORDERS',
       items: [
-        { name: 'Users Directory', href: '/admin/users', icon: Users },
-        { name: 'User Verification', href: '/admin/users/verification', icon: UserCheck }
+        {
+          id: 'catalog',
+          name: 'Products & Catalog',
+          icon: Package,
+          badge: pendingProductsCount > 0 ? pendingProductsCount : undefined,
+          badgeColor: 'bg-amber-500',
+          children: [
+            { name: 'All Products', href: '/admin/products' },
+            {
+              name: 'Product Approval',
+              href: '/admin/products/approval',
+              badge: pendingProductsCount || 126,
+              badgeColor: 'bg-amber-500'
+            },
+            { name: 'Categories', href: '/admin/categories' }
+          ]
+        },
+        {
+          id: 'orders',
+          name: 'Orders & Logistics',
+          icon: ShoppingBag,
+          badge: pendingOrdersCount > 0 ? pendingOrdersCount : undefined,
+          badgeColor: 'bg-blue-600',
+          children: [
+            {
+              name: 'All Orders',
+              href: '/admin/orders',
+              badge: pendingOrdersCount || 128,
+              badgeColor: 'bg-blue-600'
+            },
+            { name: 'Returns & QC', href: '/admin/returns' },
+            { name: 'Refunds Ledger', href: '/admin/refunds' }
+          ]
+        }
       ]
     },
     {
-      title: 'CATALOG & INVENTORY',
-      key: 'catalog',
+      title: 'FINANCE & MARKETING',
       items: [
-        { name: 'Products', href: '/admin/products', icon: Package, count: products.length },
-        { name: 'Product Approval', href: '/admin/products/approval', icon: Boxes, badge: pendingProductsCount || 126, badgeColor: 'bg-amber-500' },
-        { name: 'Categories', href: '/admin/categories', icon: FolderTree }
+        {
+          id: 'finance',
+          name: 'Finance & Payments',
+          icon: CreditCard,
+          children: [
+            { name: 'Transactions', href: '/admin/payments' },
+            { name: 'Vendor Payouts', href: '/admin/payouts' },
+            { name: 'Platform Commission', href: '/admin/commission' }
+          ]
+        },
+        {
+          id: 'marketing',
+          name: 'Marketing & Reports',
+          icon: BadgePercent,
+          children: [
+            { name: 'Coupons & Vouchers', href: '/admin/coupons' },
+            { name: 'Analytics & BI', href: '/admin/analytics' }
+          ]
+        }
       ]
     },
     {
-      title: 'ORDERS & FULFILLMENT',
-      key: 'orders',
+      title: 'SYSTEM & SETTINGS',
       items: [
-        { name: 'All Orders', href: '/admin/orders', icon: ShoppingBag, badge: pendingOrdersCount || 128, badgeColor: 'bg-blue-600' },
-        { name: 'Returns', href: '/admin/returns', icon: RotateCcw },
-        { name: 'Refunds', href: '/admin/refunds', icon: Receipt }
-      ]
-    },
-    {
-      title: 'FINANCE & PAYMENTS',
-      items: [
-        { name: 'Transactions', href: '/admin/payments', icon: CreditCard }
-      ]
-    },
-    {
-      title: 'GROWTH & MARKETING',
-      items: [
-        { name: 'Coupons & Vouchers', href: '/admin/coupons', icon: BadgePercent },
-        { name: 'Analytics & Reports', href: '/admin/analytics', icon: BarChart3 }
-      ]
-    },
-    {
-      title: 'COMMUNICATION & SITE',
-      items: [
-        { name: 'Notifications', href: '/admin/notifications', icon: Bell, badge: unreadNotifsCount, badgeColor: 'bg-rose-500' },
-        { name: 'Website Curation', href: '/admin/website', icon: Globe }
-      ]
-    },
-    {
-      title: 'SYSTEM & RBAC',
-      items: [
-        { name: 'Admin Staff', href: '/admin/admin-users', icon: UserCog },
-        { name: 'Roles & Permissions', href: '/admin/roles', icon: ShieldAlert },
-        { name: 'Activity Audit Log', href: '/admin/activity', icon: Layers },
-        { name: 'Settings', href: '/admin/settings', icon: Settings }
+        {
+          id: 'communication',
+          name: 'Communication & Site',
+          icon: Globe,
+          badge: unreadNotifsCount > 0 ? unreadNotifsCount : undefined,
+          badgeColor: 'bg-rose-500',
+          children: [
+            {
+              name: 'Notifications',
+              href: '/admin/notifications',
+              badge: unreadNotifsCount,
+              badgeColor: 'bg-rose-500'
+            },
+            { name: 'Website Curation', href: '/admin/website' }
+          ]
+        },
+        {
+          id: 'system',
+          name: 'System & RBAC',
+          icon: ShieldAlert,
+          children: [
+            { name: 'Admin Staff', href: '/admin/admin-users' },
+            { name: 'Roles & Permissions', href: '/admin/roles' },
+            { name: 'Activity Audit Log', href: '/admin/activity' },
+            { name: 'Platform Settings', href: '/admin/settings' }
+          ]
+        }
       ]
     }
   ];
 
+  // Initialize open submenus based on current active route
+  const [openMenus, setOpenMenus] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {
+      vendors: true,
+      catalog: true,
+      orders: true
+    };
+    return initial;
+  });
+
+  // Automatically expand dropdown if navigating to a child page
+  useEffect(() => {
+    navGroups.forEach((group) => {
+      group.items.forEach((item) => {
+        if (item.children) {
+          const hasActiveChild = item.children.some(
+            (child) => pathname === child.href || pathname.startsWith(child.href + '/')
+          );
+          if (hasActiveChild) {
+            setOpenMenus((prev) => ({ ...prev, [item.id]: true }));
+          }
+        }
+      });
+    });
+  }, [pathname]);
+
+  const toggleMenu = (id: string) => {
+    if (isCollapsed) {
+      // If collapsed, expand sidebar first so submenus become accessible
+      setIsCollapsed(false);
+    }
+    setOpenMenus((prev) => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
   const sidebarContent = (
-    <div className="flex flex-col h-full bg-zinc-950 text-zinc-300 select-none">
+    <div className="flex flex-col h-full bg-zinc-950 text-zinc-300 select-none border-r border-zinc-900">
       
       {/* Brand Header */}
       <div className="h-16 px-4 flex items-center justify-between border-b border-zinc-900 shrink-0">
         <Link href="/admin/dashboard" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-zinc-950 flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-zinc-950 flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition-transform shrink-0">
             D
           </div>
           {!isCollapsed && (
@@ -202,7 +311,7 @@ export function AdminSidebar({
       </div>
 
       {/* Navigation Links Scroll Container */}
-      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-6 scrollbar-thin scrollbar-thumb-zinc-800">
+      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-5 scrollbar-thin scrollbar-thumb-zinc-800">
         {navGroups.map((group, gIdx) => (
           <div key={gIdx} className="space-y-1">
             {!isCollapsed && (
@@ -211,52 +320,149 @@ export function AdminSidebar({
               </div>
             )}
 
-            <div className="space-y-0.5">
+            <div className="space-y-1">
               {group.items.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href || (item.href !== '/admin/dashboard' && pathname.startsWith(item.href));
+                const hasChildren = Boolean(item.children && item.children.length > 0);
+                const isOpen = Boolean(openMenus[item.id]);
+
+                // Check if any child is active
+                const isChildActive =
+                  hasChildren &&
+                  item.children?.some(
+                    (child) => pathname === child.href || pathname.startsWith(child.href + '/')
+                  );
+
+                // Check if direct link is active
+                const isDirectActive = item.href ? pathname === item.href : false;
+
+                if (!hasChildren && item.href) {
+                  return (
+                    <Link
+                      key={item.id}
+                      href={item.href}
+                      onClick={() => setIsMobileOpen(false)}
+                      className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all group relative cursor-pointer ${
+                        isDirectActive
+                          ? 'bg-amber-400 text-zinc-950 font-black shadow-md'
+                          : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
+                      }`}
+                      title={isCollapsed ? item.name : undefined}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Icon
+                          className={`w-4 h-4 shrink-0 ${
+                            isDirectActive ? 'text-zinc-950' : 'text-zinc-400 group-hover:text-amber-400'
+                          }`}
+                        />
+                        {!isCollapsed && <span className="truncate">{item.name}</span>}
+                      </div>
+
+                      {!isCollapsed && item.badge !== undefined && item.badge > 0 && (
+                        <span
+                          className={`text-[10px] font-bold px-2 py-0.5 rounded-full text-white ${
+                            isDirectActive ? 'bg-zinc-950 text-white' : item.badgeColor || 'bg-amber-500'
+                          }`}
+                        >
+                          {item.badge}
+                        </span>
+                      )}
+
+                      {/* Tooltip in Collapsed Mode */}
+                      {isCollapsed && (
+                        <div className="absolute left-full ml-2 px-2.5 py-1 bg-zinc-900 text-white text-xs rounded-lg shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 border border-zinc-800">
+                          {item.name}
+                        </div>
+                      )}
+                    </Link>
+                  );
+                }
 
                 return (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setIsMobileOpen(false)}
-                    className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all group relative cursor-pointer ${
-                      isActive
-                        ? 'bg-amber-400 text-zinc-950 font-black shadow-md'
-                        : 'text-zinc-400 hover:text-white hover:bg-zinc-900'
-                    }`}
-                    title={isCollapsed ? item.name : undefined}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <Icon className={`w-4 h-4 shrink-0 ${isActive ? 'text-zinc-950' : 'text-zinc-400 group-hover:text-amber-400'}`} />
-                      {!isCollapsed && <span className="truncate">{item.name}</span>}
-                    </div>
+                  <div key={item.id} className="space-y-0.5">
+                    {/* Expandable Parent Button */}
+                    <button
+                      type="button"
+                      onClick={() => toggleMenu(item.id)}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold transition-all group relative cursor-pointer ${
+                        isChildActive
+                          ? 'bg-zinc-900 text-white font-bold'
+                          : 'text-zinc-400 hover:text-white hover:bg-zinc-900/70'
+                      }`}
+                      title={isCollapsed ? item.name : undefined}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <Icon
+                          className={`w-4 h-4 shrink-0 ${
+                            isChildActive ? 'text-amber-400' : 'text-zinc-400 group-hover:text-amber-400'
+                          }`}
+                        />
+                        {!isCollapsed && <span className="truncate">{item.name}</span>}
+                      </div>
 
-                    {!isCollapsed && item.badge !== undefined && item.badge > 0 && (
-                      <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded-full text-white ${
-                          isActive ? 'bg-zinc-950 text-white' : item.badgeColor || 'bg-amber-500'
-                        }`}
-                      >
-                        {item.badge}
-                      </span>
-                    )}
+                      {!isCollapsed && (
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          {item.badge !== undefined && item.badge > 0 && (
+                            <span
+                              className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full text-white ${
+                                item.badgeColor || 'bg-amber-500'
+                              }`}
+                            >
+                              {item.badge}
+                            </span>
+                          )}
+                          <ChevronDown
+                            className={`w-3.5 h-3.5 text-zinc-500 transition-transform duration-200 ${
+                              isOpen ? 'transform rotate-180 text-amber-400' : ''
+                            }`}
+                          />
+                        </div>
+                      )}
 
-                    {!isCollapsed && item.count !== undefined && (
-                      <span className={`text-[10px] ${isActive ? 'text-zinc-950 font-bold' : 'text-zinc-600'}`}>
-                        {item.count}
-                      </span>
-                    )}
+                      {/* Tooltip in Collapsed Mode */}
+                      {isCollapsed && (
+                        <div className="absolute left-full ml-2 px-2.5 py-1 bg-zinc-900 text-white text-xs rounded-lg shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 border border-zinc-800">
+                          {item.name} (Click to expand)
+                        </div>
+                      )}
+                    </button>
 
-                    {/* Tooltip in Collapsed Mode */}
-                    {isCollapsed && (
-                      <div className="absolute left-full ml-2 px-2.5 py-1 bg-zinc-900 text-white text-xs rounded-lg shadow-xl whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity z-50 border border-zinc-800">
-                        {item.name}
-                        {item.badge ? ` (${item.badge})` : ''}
+                    {/* Accordion Submenu Links (Sliding Downwards) */}
+                    {!isCollapsed && isOpen && item.children && (
+                      <div className="pl-7 pr-1 py-1 space-y-0.5 border-l border-zinc-800/80 ml-5 my-0.5 animate-fadeIn">
+                        {item.children.map((subItem) => {
+                          const isSubActive =
+                            pathname === subItem.href || pathname.startsWith(subItem.href + '/');
+
+                          return (
+                            <Link
+                              key={subItem.href}
+                              href={subItem.href}
+                              onClick={() => setIsMobileOpen(false)}
+                              className={`flex items-center justify-between px-2.5 py-1.5 rounded-lg text-[11px] font-medium transition-colors cursor-pointer ${
+                                isSubActive
+                                  ? 'bg-amber-400 text-zinc-950 font-black shadow-sm'
+                                  : 'text-zinc-400 hover:text-white hover:bg-zinc-900/60'
+                              }`}
+                            >
+                              <span className="truncate">{subItem.name}</span>
+                              {subItem.badge !== undefined && subItem.badge > 0 && (
+                                <span
+                                  className={`text-[9px] font-extrabold px-1.5 py-0.2 rounded-full text-white ${
+                                    isSubActive
+                                      ? 'bg-zinc-950 text-white'
+                                      : subItem.badgeColor || 'bg-amber-500'
+                                  }`}
+                                >
+                                  {subItem.badge}
+                                </span>
+                              )}
+                            </Link>
+                          );
+                        })}
                       </div>
                     )}
-                  </Link>
+                  </div>
                 );
               })}
             </div>
@@ -297,7 +503,7 @@ export function AdminSidebar({
     <>
       {/* Desktop Sidebar */}
       <aside
-        className={`hidden lg:block fixed top-0 left-0 bottom-0 z-40 transition-all duration-300 border-r border-zinc-900 ${
+        className={`hidden lg:block fixed top-0 left-0 bottom-0 z-40 transition-all duration-300 ${
           isCollapsed ? 'w-20' : 'w-64'
         }`}
       >
