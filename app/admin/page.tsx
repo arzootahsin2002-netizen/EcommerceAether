@@ -1,9 +1,7 @@
-import { AdminDashboard } from '@/components/admin/AdminDashboard';
+'use client';
 
-export default function AdminPage() {
-  return (
-    <div className="bg-zinc-50/50 min-h-screen">
-      <AdminDashboard />
-    </div>
-  );
+import AdminDashboardPage from './dashboard/page';
+
+export default function AdminRootPage() {
+  return <AdminDashboardPage />;
 }
