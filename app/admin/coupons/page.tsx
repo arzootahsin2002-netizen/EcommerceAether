@@ -198,7 +198,7 @@ export default function AdminCouponsPage() {
         keyExtractor={(row) => row.id}
         title="Promotional Campaigns & Vouchers"
         searchPlaceholder="Search coupon code, campaign name..."
-        exportFilename="dribo_coupons_export"
+        exportFilename="aether_coupons_export"
       />
 
       {/* Add Coupon Modal */}
@@ -210,7 +210,7 @@ export default function AdminCouponsPage() {
               <input
                 type="text"
                 required
-                placeholder="e.g. DRIBOFEST30"
+                placeholder="e.g. AETHERFEST30"
                 value={form.code}
                 onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })}
                 className="w-full px-3.5 py-2 bg-zinc-50 border border-zinc-200 rounded-xl font-mono font-bold focus:bg-white outline-none"

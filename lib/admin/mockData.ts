@@ -17,7 +17,7 @@ import {
 export const INITIAL_ADMIN_USER: AdminUser = {
   id: 'adm-001',
   name: 'Alexander Sterling',
-  email: 'admin@dribo.market',
+  email: 'admin@aether.market',
   avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop',
   role: 'Super Admin',
   status: 'Active',
@@ -31,7 +31,7 @@ export const MOCK_ADMIN_USERS: AdminUser[] = [
   {
     id: 'adm-002',
     name: 'Priyanka Sen',
-    email: 'priyanka.vendor@dribo.market',
+    email: 'priyanka.vendor@aether.market',
     avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop',
     role: 'Vendor Manager',
     status: 'Active',
@@ -42,7 +42,7 @@ export const MOCK_ADMIN_USERS: AdminUser[] = [
   {
     id: 'adm-003',
     name: 'Rohan Deshmukh',
-    email: 'rohan.finance@dribo.market',
+    email: 'rohan.finance@aether.market',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop',
     role: 'Finance Manager',
     status: 'Active',
@@ -53,7 +53,7 @@ export const MOCK_ADMIN_USERS: AdminUser[] = [
   {
     id: 'adm-004',
     name: 'Ananya Roy',
-    email: 'ananya.catalog@dribo.market',
+    email: 'ananya.catalog@aether.market',
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop',
     role: 'Product Manager',
     status: 'Active',
@@ -811,7 +811,7 @@ export const MOCK_PAYOUTS: AdminPayoutRecord[] = [
 export const MOCK_COUPONS: AdminCoupon[] = [
   {
     id: 'cpn-1',
-    code: 'DRIBOFEST20',
+    code: 'AETHERFEST20',
     title: 'Grand Festive Marketplace 20% OFF',
     discountType: 'Percentage',
     value: 20,
@@ -827,7 +827,7 @@ export const MOCK_COUPONS: AdminCoupon[] = [
   },
   {
     id: 'cpn-2',
-    code: 'DRIBOVIP1000',
+    code: 'AETHERVIP1000',
     title: 'VIP Patron Flat ₹1,000 Off',
     discountType: 'Flat Amount',
     value: 1000,

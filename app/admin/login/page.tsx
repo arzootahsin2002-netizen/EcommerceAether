@@ -23,8 +23,8 @@ function AdminLoginInner() {
   const router = useRouter();
   const { login } = useAdmin();
 
-  const [email, setEmail] = useState('admin@dribo.market');
-  const [password, setPassword] = useState('dribo2026');
+  const [email, setEmail] = useState('admin@aether.market');
+  const [password, setPassword] = useState('aether2026');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [twoFactorCode, setTwoFactorCode] = useState('');
@@ -64,8 +64,8 @@ function AdminLoginInner() {
   };
 
   const handleFillDemo = () => {
-    setEmail('admin@dribo.market');
-    setPassword('dribo2026');
+    setEmail('admin@aether.market');
+    setPassword('aether2026');
     setTwoFactorCode('123456');
     setError('');
   };
@@ -79,7 +79,7 @@ function AdminLoginInner() {
 
       <div className="max-w-6xl w-full mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
         
-        {/* Left: DRIBO Branding & Enterprise Value Proposition */}
+        {/* Left: AETHER Branding & Enterprise Value Proposition */}
         <div className="lg:col-span-6 space-y-6 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-bold">
             <ShieldCheck className="w-4 h-4 text-amber-400" />
@@ -89,10 +89,10 @@ function AdminLoginInner() {
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <div className="w-11 h-11 bg-gradient-to-tr from-amber-500 to-amber-300 text-zinc-950 rounded-2xl flex items-center justify-center font-black text-2xl shadow-xl">
-                D
+                A
               </div>
               <span className="font-serif font-black text-3xl tracking-tight text-white">
-                DRIBO
+                AETHER
               </span>
             </div>
             <h1 className="text-3xl sm:text-4xl font-black font-serif text-white tracking-tight leading-tight">
@@ -153,7 +153,7 @@ function AdminLoginInner() {
                       <input
                         type="email"
                         required
-                        placeholder="admin@dribo.market"
+                        placeholder="admin@aether.market"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full pl-10 pr-4 py-2.5 bg-zinc-950 border border-zinc-800 rounded-xl text-xs font-medium text-white placeholder:text-zinc-600 focus:border-amber-400 focus:ring-1 focus:ring-amber-400 outline-none transition-all"

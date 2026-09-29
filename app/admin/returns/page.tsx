@@ -117,7 +117,7 @@ export default function AdminReturnsPage() {
         keyExtractor={(row) => row.id}
         title="Active Return Claims"
         searchPlaceholder="Search return ID, customer, product..."
-        exportFilename="dribo_returns_export"
+        exportFilename="aether_returns_export"
       />
 
       <RejectReasonModal

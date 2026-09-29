@@ -105,7 +105,7 @@ export default function AdminPaymentsPage() {
         keyExtractor={(row) => row.id}
         title="Gateway Inbound Transaction Log"
         searchPlaceholder="Search txn ID, order ID, customer..."
-        exportFilename="dribo_transactions_export"
+        exportFilename="aether_transactions_export"
       />
     </AdminLayout>
   );

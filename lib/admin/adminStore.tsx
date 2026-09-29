@@ -165,7 +165,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
   // Restore session from localStorage if available
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('dribo_admin_session');
+      const stored = localStorage.getItem('aether_admin_session');
       if (stored) {
         try {
           const parsed = JSON.parse(stored);
@@ -199,7 +199,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       setAdminUser(user);
       setIsAdminLoggedIn(true);
       if (typeof window !== 'undefined') {
-        localStorage.setItem('dribo_admin_session', JSON.stringify(user));
+        localStorage.setItem('aether_admin_session', JSON.stringify(user));
       }
       logActivity('Admin Session Started', 'Authentication', `${user.name} (${user.role})`);
       showToast('Welcome Back', `Logged in as ${user.name} (${user.role})`, 'success');
@@ -210,7 +210,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
 
   const logout = () => {
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('dribo_admin_session');
+      localStorage.removeItem('aether_admin_session');
     }
     logActivity('Admin Logged Out', 'Authentication', adminUser?.name || 'Admin');
     setAdminUser(null);
@@ -279,7 +279,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       logo: vendor.logo || 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=200&auto=format&fit=crop',
       vendorName: vendor.vendorName || 'New Merchant',
       businessName: vendor.businessName || 'Merchant Enterprise',
-      email: vendor.email || 'merchant@dribo.market',
+      email: vendor.email || 'merchant@aether.market',
       phone: vendor.phone || '+91 98765 00000',
       category: vendor.category || 'Fashion',
       gstin: vendor.gstin || '29AABCB0000A1Z0',
@@ -401,7 +401,7 @@ export function AdminProvider({ children }: { children: React.ReactNode }) {
       approvalStatus: 'Approved',
       status: 'Active',
       dateAdded: 'Today',
-      description: prod.description || 'Verified product listing on DRIBO marketplace.'
+      description: prod.description || 'Verified product listing on AETHER marketplace.'
     };
     setProducts((prev) => [newP, ...prev]);
     logActivity('Created New Product Listing', 'Catalog', newP.name);

@@ -81,7 +81,7 @@ export default function AdminActivityPage() {
         keyExtractor={(row) => row.id}
         title="Admin Operational Event Trail"
         searchPlaceholder="Search action, operator name, record..."
-        exportFilename="dribo_activity_log"
+        exportFilename="aether_activity_log"
         filterComponent={
           <select
             value={moduleFilter}

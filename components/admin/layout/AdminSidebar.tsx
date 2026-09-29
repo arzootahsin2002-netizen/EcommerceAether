@@ -274,12 +274,12 @@ export function AdminSidebar({
       <div className="h-16 px-4 flex items-center justify-between border-b border-zinc-900 shrink-0">
         <Link href="/admin/dashboard" className="flex items-center gap-2.5 group">
           <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-amber-500 to-amber-300 text-zinc-950 flex items-center justify-center font-black text-lg shadow-md group-hover:scale-105 transition-transform shrink-0">
-            D
+            A
           </div>
           {!isCollapsed && (
             <div className="flex flex-col">
               <span className="font-serif font-black text-lg tracking-tight text-white leading-none">
-                DRIBO
+                AETHER
               </span>
               <span className="text-[9px] uppercase tracking-[0.2em] text-amber-400 font-extrabold mt-0.5">
                 Marketplace Admin

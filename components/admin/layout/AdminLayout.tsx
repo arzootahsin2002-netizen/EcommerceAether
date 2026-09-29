@@ -38,7 +38,7 @@ function AdminLayoutInner({
   if (!isAdminLoggedIn && pathname !== '/admin/login') {
     return (
       <div className="min-h-screen bg-zinc-950 flex items-center justify-center text-white text-xs">
-        Authenticating DRIBO Admin Access...
+        Authenticating AETHER Admin Access...
       </div>
     );
   }

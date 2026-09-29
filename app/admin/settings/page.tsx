@@ -21,9 +21,9 @@ export default function AdminSettingsPage() {
   const [savedSuccess, setSavedSuccess] = useState(false);
 
   // Form states
-  const [marketName, setMarketName] = useState('DRIBO Marketplace');
-  const [supportEmail, setSupportEmail] = useState('support@dribo.market');
-  const [legalEntity, setLegalEntity] = useState('Dribo Marketplace Technologies India Private Limited');
+  const [marketName, setMarketName] = useState('AETHER Marketplace');
+  const [supportEmail, setSupportEmail] = useState('support@aether.market');
+  const [legalEntity, setLegalEntity] = useState('Aether Marketplace Technologies India Private Limited');
   const [gstin, setGstin] = useState('29AABCD9876E1Z4');
   const [razorpayKey, setRazorpayKey] = useState('rzp_live_98471092481');
   const [stripeKey, setStripeKey] = useState('pk_live_51M892184910284');
@@ -232,7 +232,7 @@ export default function AdminSettingsPage() {
                     <div>
                       <span className="font-bold text-zinc-950 block">Enforce 2FA on All Administrator Accounts</span>
                       <p className="text-[11px] text-zinc-500 mt-0.5">
-                        Requires OTP/Authenticator token before accessing the DRIBO admin dashboard.
+                        Requires OTP/Authenticator token before accessing the AETHER admin dashboard.
                       </p>
                     </div>
                   </label>

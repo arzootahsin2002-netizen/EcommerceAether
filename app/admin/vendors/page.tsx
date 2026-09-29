@@ -211,7 +211,7 @@ export default function AdminVendorsPage() {
         keyExtractor={(row) => row.id}
         title="Verified Merchant Partners Directory"
         searchPlaceholder="Search vendor name, business, GSTIN, email..."
-        exportFilename="dribo_vendors_list"
+        exportFilename="aether_vendors_list"
         filterComponent={
           <div className="flex items-center gap-2">
             <select

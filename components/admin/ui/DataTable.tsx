@@ -56,7 +56,7 @@ export function DataTable<T>({
   filterComponent,
   onRowClick,
   bulkActions,
-  exportFilename = 'dribo_export',
+  exportFilename = 'aether_export',
   defaultRowsPerPage = 10,
   emptyStateTitle = 'No records found',
   emptyStateMessage = 'Try adjusting your search criteria or resetting filters.',

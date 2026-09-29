@@ -347,7 +347,7 @@ export function AdminTopbar({ onToggleSidebar, isCollapsed }: AdminTopbarProps) 
               
               <div className="px-4 py-2">
                 <p className="font-bold text-zinc-950">{adminUser?.name || 'Alexander Sterling'}</p>
-                <p className="text-[11px] text-zinc-400">{adminUser?.email || 'admin@dribo.market'}</p>
+                <p className="text-[11px] text-zinc-400">{adminUser?.email || 'admin@aether.market'}</p>
                 <span className="inline-block mt-1 text-[10px] font-extrabold uppercase bg-amber-100 text-amber-900 px-2 py-0.5 rounded-md">
                   {adminUser?.role || 'Super Admin'}
                 </span>

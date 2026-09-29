@@ -135,7 +135,7 @@ export default function AdminStaffPage() {
         keyExtractor={(row) => row.id}
         title="Internal Marketplace Operators"
         searchPlaceholder="Search staff member name, email, role..."
-        exportFilename="dribo_admin_staff_export"
+        exportFilename="aether_admin_staff_export"
       />
 
       {/* Add Staff Modal */}
@@ -158,7 +158,7 @@ export default function AdminStaffPage() {
             <input
               type="email"
               required
-              placeholder="operator@dribo.market"
+              placeholder="operator@aether.market"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               className="w-full px-3.5 py-2 bg-zinc-50 border border-zinc-200 rounded-xl font-medium focus:bg-white outline-none"

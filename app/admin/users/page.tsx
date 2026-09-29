@@ -174,7 +174,7 @@ export default function AdminUsersPage() {
         keyExtractor={(row) => row.id}
         title="Marketplace Users Directory"
         searchPlaceholder="Search customer name, email, phone, user ID..."
-        exportFilename="dribo_users_export"
+        exportFilename="aether_users_export"
         filterComponent={
           <div className="flex items-center gap-2">
             <select

@@ -113,7 +113,7 @@ export default function AdminRefundsPage() {
         keyExtractor={(row) => row.id}
         title="Customer Refunds Ledger"
         searchPlaceholder="Search refund ID, order, customer..."
-        exportFilename="dribo_refunds_export"
+        exportFilename="aether_refunds_export"
       />
     </AdminLayout>
   );

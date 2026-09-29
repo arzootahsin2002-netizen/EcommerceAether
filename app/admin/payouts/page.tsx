@@ -139,7 +139,7 @@ export default function AdminPayoutsPage() {
         keyExtractor={(row) => row.id}
         title="Vendor Settlement Ledger"
         searchPlaceholder="Search payout ID, vendor, bank UTR..."
-        exportFilename="dribo_payouts_export"
+        exportFilename="aether_payouts_export"
       />
 
       {/* Authorize Payout Modal */}

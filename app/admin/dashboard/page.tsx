@@ -58,7 +58,7 @@ export default function AdminDashboardPage() {
   return (
     <AdminLayout
       title="Dashboard"
-      subtitle="Monitor and manage your DRIBO marketplace operations in real-time."
+      subtitle="Monitor and manage your AETHER marketplace operations in real-time."
       actions={
         <div className="flex items-center gap-2">
           {/* Date Selector */}

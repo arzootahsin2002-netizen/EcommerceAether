@@ -191,7 +191,7 @@ export default function AdminProductsPage() {
         keyExtractor={(row) => row.id}
         title="Marketplace Catalog Directory"
         searchPlaceholder="Search product title, SKU, brand, merchant..."
-        exportFilename="dribo_products_export"
+        exportFilename="aether_products_export"
         filterComponent={
           <div className="flex items-center gap-2">
             <select
@@ -237,7 +237,7 @@ export default function AdminProductsPage() {
             setDeletingProd(null);
           }}
           title="Delete Product Listing"
-          message={`Are you sure you want to remove "${deletingProd.name}" from the DRIBO catalog? This action cannot be undone.`}
+          message={`Are you sure you want to remove "${deletingProd.name}" from the AETHER catalog? This action cannot be undone.`}
           confirmLabel="Delete Product"
           isDanger={true}
         />
