@@ -38,6 +38,7 @@ export function FeaturedProducts() {
           {/* Tab Selector */}
           <div className="flex items-center gap-2 p-1.5 bg-zinc-200/80 rounded-2xl overflow-x-auto no-scrollbar">
             <button
+              type="button"
               onClick={() => setActiveTab('trending')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'trending' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-600 hover:text-zinc-950'
@@ -46,6 +47,7 @@ export function FeaturedProducts() {
               Trending Now
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab('bestsellers')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'bestsellers' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-600 hover:text-zinc-950'
@@ -54,6 +56,7 @@ export function FeaturedProducts() {
               Best Sellers
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab('newarrivals')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'newarrivals' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-600 hover:text-zinc-950'
@@ -62,6 +65,7 @@ export function FeaturedProducts() {
               New Arrivals
             </button>
             <button
+              type="button"
               onClick={() => setActiveTab('outerwear')}
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                 activeTab === 'outerwear' ? 'bg-white text-zinc-950 shadow-sm' : 'text-zinc-600 hover:text-zinc-950'

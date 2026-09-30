@@ -104,6 +104,7 @@ export function Navbar() {
           
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="lg:hidden p-2 text-zinc-700 hover:text-black rounded-lg hover:bg-zinc-100 transition-colors"
             aria-label="Toggle Navigation Menu"
@@ -258,6 +259,7 @@ export function Navbar() {
 
             {/* Shopping Cart Drawer Trigger */}
             <button
+              type="button"
               onClick={() => setIsCartDrawerOpen(true)}
               className="relative p-2.5 text-zinc-700 hover:text-black rounded-full hover:bg-zinc-100 transition-colors cursor-pointer"
               aria-label="Shopping Cart"
@@ -273,6 +275,7 @@ export function Navbar() {
             {/* More Dropdown (Beside Cart) */}
             <div ref={moreRef} className="relative">
               <button
+                type="button"
                 onClick={() => setIsMoreOpen(!isMoreOpen)}
                 className="flex items-center gap-1 px-3 py-2 rounded-xl text-sm font-semibold text-zinc-700 hover:text-black hover:bg-zinc-100 transition-colors cursor-pointer group"
                 aria-label="More Options"
@@ -331,6 +334,7 @@ export function Navbar() {
             {/* User Profile Flyout */}
             <div ref={accountRef} className="relative">
               <button
+                type="button"
                 onClick={() => setIsAccountOpen(!isAccountOpen)}
                 className="flex items-center gap-2 p-1.5 pl-2.5 pr-2 rounded-full border border-zinc-200 hover:border-zinc-300 hover:bg-zinc-50 transition-all cursor-pointer group"
                 aria-label="Account Menu"

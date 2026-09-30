@@ -156,6 +156,7 @@ export function HeroBanner() {
         {/* Carousel Arrow Controls */}
         <div className="absolute right-6 sm:right-12 bottom-10 z-20 flex items-center gap-3">
           <button
+            type="button"
             onClick={() => setCurrentSlide((prev) => (prev === 0 ? HERO_SLIDES.length - 1 : prev - 1))}
             className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
             aria-label="Previous slide"
@@ -167,6 +168,7 @@ export function HeroBanner() {
             {HERO_SLIDES.map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => setCurrentSlide(i)}
                 className={`h-2 rounded-full transition-all cursor-pointer ${
                   currentSlide === i ? 'w-8 bg-white' : 'w-2 bg-white/40'
@@ -177,6 +179,7 @@ export function HeroBanner() {
           </div>
 
           <button
+            type="button"
             onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
             className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/30 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
             aria-label="Next slide"

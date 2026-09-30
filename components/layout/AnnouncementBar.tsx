@@ -30,9 +30,11 @@ export function AnnouncementBar() {
             <span className="text-zinc-400">Use code:</span>
             <span className="font-mono font-bold text-amber-400">AETHER20</span>
             <button
+              type="button"
               onClick={() => copyCode('AETHER20')}
               className="ml-1 text-zinc-400 hover:text-white transition-colors cursor-pointer"
               title="Copy Coupon"
+              aria-label="Copy Coupon Code"
             >
               {copied ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
             </button>

@@ -47,6 +47,7 @@ export function CategoryTiles() {
         {/* Category Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-4 mb-8">
           <button
+            type="button"
             onClick={() => setSelectedCategory('all')}
             className={`px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
               selectedCategory === 'all'
@@ -62,6 +63,7 @@ export function CategoryTiles() {
             return (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   isSelected

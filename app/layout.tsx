@@ -34,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
-      <body className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-950 selection:text-white">
+    <html lang="en" suppressHydrationWarning className={`${inter.variable} ${poppins.variable} scroll-smooth`}>
+      <body suppressHydrationWarning className="min-h-screen flex flex-col bg-white text-zinc-900 font-sans antialiased selection:bg-zinc-950 selection:text-white">
         <AppProvider>
           <StoreLayoutShell>
             {children}
