@@ -128,10 +128,7 @@ export function Navbar() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-1 font-medium text-sm text-zinc-700">
-            <Link href="/shop" className="px-3.5 py-2 rounded-xl font-semibold hover:text-black hover:bg-zinc-100 transition-colors">
-              All Products
-            </Link>
-            <Link href="/shop?sale=true" className="px-3 py-2 rounded-xl text-rose-600 hover:text-rose-700 hover:bg-rose-50 font-semibold flex items-center gap-1 transition-colors">
+            <Link href="/shop?sale=true" className="px-3.5 py-2 rounded-xl text-rose-600 hover:text-rose-700 hover:bg-rose-50 font-semibold flex items-center gap-1.5 transition-colors">
               <Sparkles className="w-3.5 h-3.5" /> Festive Sale
             </Link>
           </nav>
