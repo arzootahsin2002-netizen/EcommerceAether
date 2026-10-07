@@ -56,8 +56,10 @@ export function CartDrawer() {
               </span>
             </div>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setIsCartDrawerOpen(false)}
-              className="p-1.5 text-zinc-400 hover:text-zinc-900 rounded-lg hover:bg-zinc-100 transition-colors"
+              className="p-1.5 text-zinc-400 hover:text-zinc-900 rounded-lg hover:bg-zinc-100 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -100,11 +102,13 @@ export function CartDrawer() {
                   Explore our modern apparel collection of heavyweight tees, linen shirts, and outerwear.
                 </p>
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => {
                     setIsCartDrawerOpen(false);
                     router.push('/shop');
                   }}
-                  className="px-6 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-semibold rounded-full transition-colors inline-flex items-center gap-2"
+                  className="px-6 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-semibold rounded-full transition-colors inline-flex items-center gap-2 cursor-pointer"
                 >
                   Start Shopping <ArrowRight className="w-3.5 h-3.5" />
                 </button>
@@ -136,8 +140,10 @@ export function CartDrawer() {
                           {item.product.name}
                         </Link>
                         <button
+                          type="button"
+                          suppressHydrationWarning
                           onClick={() => removeFromCart(item.productId, item.selectedSize, item.selectedColor)}
-                          className="text-zinc-400 hover:text-rose-500 p-1 transition-colors"
+                          className="text-zinc-400 hover:text-rose-500 p-1 transition-colors cursor-pointer"
                           title="Remove item"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -156,16 +162,20 @@ export function CartDrawer() {
                     <div className="flex items-center justify-between mt-3">
                       <div className="flex items-center border border-zinc-300 rounded-lg bg-white overflow-hidden shadow-xs">
                         <button
+                          type="button"
+                          suppressHydrationWarning
                           onClick={() => updateQuantity(item.productId, item.selectedSize, item.selectedColor, item.quantity - 1)}
-                          className="p-1.5 text-zinc-600 hover:bg-zinc-100 transition-colors"
+                          className="p-1.5 text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer"
                           aria-label="Decrease quantity"
                         >
                           <Minus className="w-3 h-3" />
                         </button>
                         <span className="px-2.5 text-xs font-bold text-zinc-900">{item.quantity}</span>
                         <button
+                          type="button"
+                          suppressHydrationWarning
                           onClick={() => updateQuantity(item.productId, item.selectedSize, item.selectedColor, item.quantity + 1)}
-                          className="p-1.5 text-zinc-600 hover:bg-zinc-100 transition-colors"
+                          className="p-1.5 text-zinc-600 hover:bg-zinc-100 transition-colors cursor-pointer"
                           aria-label="Increase quantity"
                         >
                           <Plus className="w-3 h-3" />
@@ -186,8 +196,10 @@ export function CartDrawer() {
 
                     <div className="mt-2 pt-2 border-t border-zinc-200/50 flex justify-end">
                       <button
+                        type="button"
+                        suppressHydrationWarning
                         onClick={() => saveForLater(item)}
-                        className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 flex items-center gap-1 transition-colors"
+                        className="text-[11px] font-medium text-zinc-500 hover:text-zinc-900 flex items-center gap-1 transition-colors cursor-pointer"
                       >
                         <Bookmark className="w-3 h-3" /> Save for later
                       </button>
@@ -231,6 +243,8 @@ export function CartDrawer() {
                   View Cart
                 </Link>
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={handleCheckout}
                   className="py-3 px-4 rounded-xl bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold flex items-center justify-center gap-1.5 transition-colors shadow-sm cursor-pointer"
                 >

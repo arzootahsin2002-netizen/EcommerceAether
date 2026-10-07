@@ -208,8 +208,9 @@ export function Navbar() {
                         ))}
                         <button
                           type="button"
+                          suppressHydrationWarning={true}
                           onClick={handleSearchSubmit}
-                          className="w-full text-center py-2 mt-2 text-xs font-semibold text-zinc-900 hover:text-black bg-zinc-100 hover:bg-zinc-200/80 rounded-xl transition-colors flex items-center justify-center gap-1"
+                          className="w-full text-center py-2 mt-2 text-xs font-semibold text-zinc-900 hover:text-black bg-zinc-100 hover:bg-zinc-200/80 rounded-xl transition-colors flex items-center justify-center gap-1 cursor-pointer"
                         >
                           View all results for &quot;{searchQuery}&quot; <ArrowRight className="w-3.5 h-3.5" />
                         </button>
@@ -230,6 +231,7 @@ export function Navbar() {
                         <button
                           key={term}
                           type="button"
+                          suppressHydrationWarning={true}
                           onClick={() => {
                             setSearchQuery(term);
                             router.push(`/shop?q=${encodeURIComponent(term)}`);
@@ -586,11 +588,12 @@ export function Navbar() {
                   </Link>
                   <button
                     type="button"
+                    suppressHydrationWarning={true}
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       setIsAdvertiseModalOpen(true);
                     }}
-                    className="w-full flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium text-left"
+                    className="w-full flex items-center justify-between p-2.5 rounded-xl bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-medium text-left cursor-pointer"
                   >
                     <span className="flex items-center gap-2.5">
                       <Presentation className="w-4 h-4 text-purple-600" /> Advertise on Aether

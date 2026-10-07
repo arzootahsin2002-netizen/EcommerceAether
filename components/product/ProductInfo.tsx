@@ -104,8 +104,10 @@ export function ProductInfo({
           </div>
 
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={handleShare}
-            className="p-2 rounded-full hover:bg-zinc-100 text-zinc-500 hover:text-black transition-colors"
+            className="p-2 rounded-full hover:bg-zinc-100 text-zinc-500 hover:text-black transition-colors cursor-pointer"
             title="Share this item"
           >
             <Share2 className="w-4 h-4" />
@@ -169,6 +171,8 @@ export function ProductInfo({
           {product.colors.map((color) => (
             <button
               key={color.name}
+              type="button"
+              suppressHydrationWarning
               onClick={() => setSelectedColor(color.name)}
               className={`w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all cursor-pointer ${
                 selectedColor === color.name
@@ -195,6 +199,8 @@ export function ProductInfo({
             Select Size: <span className="text-zinc-950 font-extrabold">{selectedSize}</span>
           </label>
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setIsSizeGuideOpen(true)}
             className="text-xs font-semibold text-amber-800 hover:text-amber-950 flex items-center gap-1 underline cursor-pointer"
           >
@@ -208,6 +214,8 @@ export function ProductInfo({
             return (
               <button
                 key={sz}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setSelectedSize(sz)}
                 className={`py-3 text-xs font-bold rounded-2xl border transition-all cursor-pointer ${
                   isSelected
@@ -223,7 +231,7 @@ export function ProductInfo({
 
         {product.modelInfo && (
           <p className="text-[11px] text-zinc-500 mt-2 italic flex items-center gap-1">
-            <Sparkles className="w-3 h-3 text-amber-600" /> {product.modelInfo}
+            <Sparkles className="w-3 hand-3 text-amber-600" /> {product.modelInfo}
           </p>
         )}
       </div>
@@ -234,16 +242,20 @@ export function ProductInfo({
           {/* Quantity Selector */}
           <div className="flex items-center border border-zinc-200 rounded-2xl bg-zinc-50 overflow-hidden px-2">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-              className="p-2 text-zinc-600 hover:text-black font-bold text-sm"
+              className="p-2 text-zinc-600 hover:text-black font-bold text-sm cursor-pointer"
               disabled={quantity <= 1}
             >
               -
             </button>
             <span className="px-3 text-xs font-bold text-zinc-950 min-w-[28px] text-center">{quantity}</span>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-              className="p-2 text-zinc-600 hover:text-black font-bold text-sm"
+              className="p-2 text-zinc-600 hover:text-black font-bold text-sm cursor-pointer"
             >
               +
             </button>
@@ -251,6 +263,8 @@ export function ProductInfo({
 
           {/* Add To Cart */}
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={handleAddToCart}
             className="flex-1 py-3.5 px-6 bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transition-all cursor-pointer"
           >
@@ -260,6 +274,8 @@ export function ProductInfo({
 
         {/* 1-Click Buy Now */}
         <button
+          type="button"
+          suppressHydrationWarning
           onClick={handleBuyNow}
           className="w-full py-3.5 px-6 bg-amber-500 hover:bg-amber-400 text-zinc-950 text-xs font-extrabold rounded-2xl flex items-center justify-center gap-2 shadow-md transition-all cursor-pointer"
         >
@@ -276,6 +292,7 @@ export function ProductInfo({
         <form onSubmit={checkPincode} className="flex gap-2">
           <input
             type="text"
+            suppressHydrationWarning
             placeholder="Enter 6-digit Pincode (e.g. 560038)"
             maxLength={6}
             value={pincode}
@@ -284,7 +301,8 @@ export function ProductInfo({
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-zinc-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-colors"
+            suppressHydrationWarning
+            className="px-4 py-2 bg-zinc-900 text-white text-xs font-bold rounded-xl hover:bg-black transition-colors cursor-pointer"
           >
             Check
           </button>

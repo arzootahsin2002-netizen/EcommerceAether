@@ -131,6 +131,8 @@ export function FilterSidebar({
         </div>
         {hasActiveFilters && (
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={onReset}
             className="text-xs font-semibold text-rose-600 hover:text-rose-700 flex items-center gap-1 transition-colors cursor-pointer"
           >
@@ -147,9 +149,10 @@ export function FilterSidebar({
           </span>
           <input
             type="checkbox"
+            suppressHydrationWarning
             checked={filters.onSaleOnly}
             onChange={(e) => onFilterChange({ ...filters, onSaleOnly: e.target.checked })}
-            className="w-4 h-4 rounded text-zinc-900 focus:ring-zinc-900 rounded"
+            className="w-4 h-4 rounded text-zinc-900 focus:ring-zinc-900"
           />
         </label>
 
@@ -157,9 +160,10 @@ export function FilterSidebar({
           <span>In-Stock Only</span>
           <input
             type="checkbox"
+            suppressHydrationWarning
             checked={filters.inStockOnly}
             onChange={(e) => onFilterChange({ ...filters, inStockOnly: e.target.checked })}
-            className="w-4 h-4 rounded text-zinc-900 focus:ring-zinc-900 rounded"
+            className="w-4 h-4 rounded text-zinc-900 focus:ring-zinc-900"
           />
         </label>
       </div>
@@ -172,6 +176,7 @@ export function FilterSidebar({
         </div>
         <input
           type="range"
+          suppressHydrationWarning
           min="500"
           max="10000"
           step="250"
@@ -202,6 +207,7 @@ export function FilterSidebar({
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
+                  suppressHydrationWarning
                   checked={filters.categories.includes(cat)}
                   onChange={() => toggleCategory(cat)}
                   className="w-4 h-4 rounded text-zinc-950 focus:ring-zinc-900"
@@ -225,6 +231,7 @@ export function FilterSidebar({
               <div className="flex items-center gap-2">
                 <input
                   type="checkbox"
+                  suppressHydrationWarning
                   checked={filters.subcategories.includes(sub)}
                   onChange={() => toggleSubcategory(sub)}
                   className="w-4 h-4 rounded text-zinc-950 focus:ring-zinc-900"
@@ -245,6 +252,8 @@ export function FilterSidebar({
             return (
               <button
                 key={sz}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => toggleSize(sz)}
                 className={`py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                   isSelected
@@ -268,6 +277,8 @@ export function FilterSidebar({
             return (
               <button
                 key={col.name}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => toggleColor(col.name)}
                 className={`w-7 h-7 rounded-full border-2 flex items-center justify-center transition-all cursor-pointer ${
                   isSelected ? 'ring-2 ring-zinc-950 ring-offset-2 scale-110' : 'border-zinc-300'
@@ -297,6 +308,7 @@ export function FilterSidebar({
             >
               <input
                 type="radio"
+                suppressHydrationWarning
                 name="minRating"
                 checked={filters.minRating === rating}
                 onChange={() =>
@@ -317,8 +329,10 @@ export function FilterSidebar({
           ))}
           {filters.minRating > 0 && (
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => onFilterChange({ ...filters, minRating: 0 })}
-              className="text-[11px] text-zinc-400 hover:text-zinc-700 underline pt-1 block"
+              className="text-[11px] text-zinc-400 hover:text-zinc-700 underline pt-1 block cursor-pointer"
             >
               Reset rating filter
             </button>
@@ -337,6 +351,7 @@ export function FilterSidebar({
             >
               <input
                 type="checkbox"
+                suppressHydrationWarning
                 checked={filters.materials.includes(mat)}
                 onChange={() => toggleMaterial(mat)}
                 className="w-4 h-4 rounded text-zinc-950 focus:ring-zinc-900"

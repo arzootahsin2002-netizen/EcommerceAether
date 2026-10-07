@@ -36,8 +36,10 @@ export function MobileFilterDrawer({
           <div className="p-4 border-b border-zinc-100 flex items-center justify-between">
             <h3 className="text-base font-bold text-zinc-950">Filter Products</h3>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={onClose}
-              className="p-1.5 text-zinc-400 hover:text-black rounded-lg hover:bg-zinc-100 transition-colors"
+              className="p-1.5 text-zinc-400 hover:text-black rounded-lg hover:bg-zinc-100 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -56,8 +58,10 @@ export function MobileFilterDrawer({
           {/* Sticky Apply Button */}
           <div className="p-4 border-t border-zinc-100 bg-white">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={onClose}
-              className="w-full py-3.5 bg-zinc-950 text-white rounded-2xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg"
+              className="w-full py-3.5 bg-zinc-950 text-white rounded-2xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg cursor-pointer"
             >
               <Check className="w-4 h-4" /> Apply Filters ({totalMatches} Results)
             </button>

@@ -225,6 +225,8 @@ function ShopContent() {
                   Try clearing some filters, adjusting the price range, or searching for broader categories.
                 </p>
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={handleResetFilters}
                   className="px-6 py-2.5 bg-zinc-950 hover:bg-zinc-800 text-white rounded-full text-xs font-bold transition-colors cursor-pointer"
                 >

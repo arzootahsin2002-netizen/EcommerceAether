@@ -46,8 +46,10 @@ export function QuickViewModal() {
           
           {/* Close button */}
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setQuickViewProduct(null)}
-            className="absolute top-4 right-4 z-20 p-2 text-zinc-500 hover:text-black bg-white/80 hover:bg-white rounded-full shadow-sm transition-all"
+            className="absolute top-4 right-4 z-20 p-2 text-zinc-500 hover:text-black bg-white/80 hover:bg-white rounded-full shadow-sm transition-all cursor-pointer"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -77,6 +79,8 @@ export function QuickViewModal() {
                   {quickViewProduct.images.map((img, idx) => (
                     <button
                       key={idx}
+                      type="button"
+                      suppressHydrationWarning
                       onClick={() => setSelectedImageIndex(idx)}
                       className={`relative w-14 h-16 rounded-lg overflow-hidden border-2 transition-all shrink-0 cursor-pointer ${
                         selectedImageIndex === idx ? 'border-zinc-950 scale-102' : 'border-transparent opacity-70 hover:opacity-100'
@@ -137,6 +141,8 @@ export function QuickViewModal() {
                     {quickViewProduct.colors.map((color) => (
                       <button
                         key={color.name}
+                        type="button"
+                        suppressHydrationWarning
                         onClick={() => {
                           setSelectedColor(color.name);
                           if (color.imageIndex !== undefined) {
@@ -167,6 +173,8 @@ export function QuickViewModal() {
                     {quickViewProduct.sizes.map((size) => (
                       <button
                         key={size}
+                        type="button"
+                        suppressHydrationWarning
                         onClick={() => setSelectedSize(size)}
                         className={`py-2 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                           selectedSize === size
@@ -185,6 +193,8 @@ export function QuickViewModal() {
               <div className="space-y-3 pt-2">
                 <div className="flex gap-2">
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={handleAddToCart}
                     className="w-full py-3 px-4 bg-zinc-950 hover:bg-zinc-800 text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-2 shadow-sm transition-colors cursor-pointer"
                   >

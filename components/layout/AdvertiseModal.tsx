@@ -33,8 +33,10 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
         {/* Header with gradient */}
         <div className="bg-gradient-to-r from-zinc-950 via-zinc-900 to-zinc-950 text-white p-6 relative">
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={onClose}
-            className="absolute right-4 top-4 p-2 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+            className="absolute right-4 top-4 p-2 text-zinc-400 hover:text-white rounded-full hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -94,6 +96,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
                   <input
                     type="text"
                     required
+                    suppressHydrationWarning
                     placeholder="e.g. Atelier Studio"
                     value={brandName}
                     onChange={(e) => setBrandName(e.target.value)}
@@ -105,6 +108,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
                   <input
                     type="email"
                     required
+                    suppressHydrationWarning
                     placeholder="partner@brand.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -118,6 +122,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
                   <label className="text-xs font-semibold text-zinc-700 block mb-1">Target Category</label>
                   <select
                     value={category}
+                    suppressHydrationWarning
                     onChange={(e) => setCategory(e.target.value)}
                     className="w-full px-3.5 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-zinc-900 outline-none"
                   >
@@ -132,6 +137,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
                   <label className="text-xs font-semibold text-zinc-700 block mb-1">Monthly Ad Budget</label>
                   <select
                     value={budget}
+                    suppressHydrationWarning
                     onChange={(e) => setBudget(e.target.value)}
                     className="w-full px-3.5 py-2.5 bg-zinc-50 border border-zinc-200 rounded-xl text-xs font-medium focus:ring-2 focus:ring-zinc-900 outline-none"
                   >
@@ -146,6 +152,7 @@ export function AdvertiseModal({ isOpen, onClose }: AdvertiseModalProps) {
               <div className="pt-2">
                 <button
                   type="submit"
+                  suppressHydrationWarning
                   className="w-full py-3 bg-zinc-950 text-white rounded-xl text-xs font-bold hover:bg-zinc-800 transition-colors shadow-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Megaphone className="w-4 h-4 text-amber-400" /> Submit Advertising Inquiry

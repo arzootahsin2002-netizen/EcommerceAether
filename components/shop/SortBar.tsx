@@ -68,8 +68,10 @@ export function SortBar({
         {/* Total Results & Mobile Filter Trigger */}
         <div className="flex items-center justify-between sm:justify-start gap-3">
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={onOpenMobileFilters}
-            className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 text-white text-xs font-bold"
+            className="lg:hidden flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 text-white text-xs font-bold cursor-pointer"
           >
             <SlidersHorizontal className="w-4 h-4" />
             <span>Filters</span>
@@ -93,6 +95,7 @@ export function SortBar({
             </label>
             <select
               id="sort-select"
+              suppressHydrationWarning
               value={filters.sortBy}
               onChange={(e) =>
                 onFilterChange({
@@ -114,6 +117,8 @@ export function SortBar({
           {/* View Mode Toggle */}
           <div className="hidden sm:flex items-center border border-zinc-200 rounded-xl p-1 bg-zinc-50">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => onViewModeChange('grid')}
               className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                 viewMode === 'grid' ? 'bg-white shadow-xs text-zinc-950' : 'text-zinc-400 hover:text-zinc-700'
@@ -123,6 +128,8 @@ export function SortBar({
               <LayoutGrid className="w-4 h-4" />
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => onViewModeChange('list')}
               className={`p-1.5 rounded-lg transition-colors cursor-pointer ${
                 viewMode === 'list' ? 'bg-white shadow-xs text-zinc-950' : 'text-zinc-400 hover:text-zinc-700'
@@ -147,7 +154,12 @@ export function SortBar({
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-900 text-white text-xs font-medium"
             >
               {cat}
-              <button onClick={() => removeCategory(cat)} className="hover:text-zinc-300">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => removeCategory(cat)}
+                className="hover:text-zinc-300 cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>
@@ -159,7 +171,12 @@ export function SortBar({
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200"
             >
               {sub}
-              <button onClick={() => removeSubcategory(sub)} className="hover:text-black">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => removeSubcategory(sub)}
+                className="hover:text-black cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>
@@ -171,7 +188,12 @@ export function SortBar({
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200"
             >
               Size: {sz}
-              <button onClick={() => removeSize(sz)} className="hover:text-black">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => removeSize(sz)}
+                className="hover:text-black cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>
@@ -183,7 +205,12 @@ export function SortBar({
               className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 text-xs font-medium border border-zinc-200"
             >
               Color: {col}
-              <button onClick={() => removeColor(col)} className="hover:text-black">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => removeColor(col)}
+                className="hover:text-black cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>
@@ -192,7 +219,12 @@ export function SortBar({
           {filters.minRating > 0 && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-200">
               {filters.minRating}★ & Above
-              <button onClick={() => onFilterChange({ ...filters, minRating: 0 })} className="hover:text-black">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => onFilterChange({ ...filters, minRating: 0 })}
+                className="hover:text-black cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>
@@ -201,7 +233,12 @@ export function SortBar({
           {filters.onSaleOnly && (
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-900 text-xs font-bold border border-rose-200">
               On Sale
-              <button onClick={() => onFilterChange({ ...filters, onSaleOnly: false })} className="hover:text-black">
+              <button
+                type="button"
+                suppressHydrationWarning
+                onClick={() => onFilterChange({ ...filters, onSaleOnly: false })}
+                className="hover:text-black cursor-pointer"
+              >
                 <X className="w-3 h-3" />
               </button>
             </span>

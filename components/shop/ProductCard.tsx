@@ -55,6 +55,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
           )}
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => toggleWishlist(product.id)}
             className="absolute top-3 right-3 p-2 rounded-full bg-white/90 hover:bg-white text-zinc-700 hover:text-rose-500 shadow-xs transition-colors cursor-pointer"
             aria-label="Wishlist"
@@ -104,6 +105,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
             <div className="flex items-center gap-2">
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setQuickViewProduct(product)}
                 className="p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-100 text-zinc-700 transition-colors cursor-pointer"
                 title="Quick View"
@@ -170,6 +172,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
         <div className="absolute top-3 right-3 flex flex-col gap-1.5 z-10">
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => toggleWishlist(product.id)}
             className="w-9 h-9 rounded-full bg-white/90 hover:bg-white text-zinc-700 hover:text-rose-500 shadow-sm flex items-center justify-center transition-transform hover:scale-110 cursor-pointer"
             aria-label="Wishlist"
@@ -179,6 +182,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
 
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setQuickViewProduct(product)}
             className="w-9 h-9 rounded-full bg-white/90 hover:bg-white text-zinc-700 hover:text-black shadow-sm flex items-center justify-center transition-transform hover:scale-110 opacity-0 group-hover:opacity-100 cursor-pointer"
             title="Quick View"
@@ -195,6 +199,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
               <span className="text-[11px] font-bold text-zinc-900 uppercase">Select Size:</span>
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setShowSizePicker(false)}
                 className="text-[10px] text-zinc-500 hover:text-black font-semibold cursor-pointer"
               >
@@ -206,6 +211,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
                 <button
                   key={sz}
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => handleQuickAdd(sz)}
                   className="py-1.5 text-xs font-bold rounded-lg border border-zinc-200 hover:border-zinc-900 hover:bg-zinc-950 hover:text-white transition-all text-zinc-800 cursor-pointer"
                 >
@@ -218,6 +224,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
           <div className="absolute inset-x-3 bottom-3 z-10 opacity-0 group-hover:opacity-100 transition-all duration-200 transform translate-y-2 group-hover:translate-y-0">
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => {
                 if (product.sizes.length === 1) {
                   addToCart(product, product.sizes[0], selectedColor, 1);
@@ -256,6 +263,7 @@ export function ProductCard({ product, viewMode = 'grid' }: ProductCardProps) {
                 <button
                   key={color.name}
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => {
                     setSelectedColor(color.name);
                     if (color.imageIndex !== undefined) {
