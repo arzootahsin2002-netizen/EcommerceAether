@@ -31,6 +31,7 @@ export function AnnouncementBar() {
             <span className="font-mono font-bold text-amber-400">AETHER20</span>
             <button
               type="button"
+              suppressHydrationWarning={true}
               onClick={() => copyCode('AETHER20')}
               className="ml-1 text-zinc-400 hover:text-white transition-colors cursor-pointer"
               title="Copy Coupon"

@@ -112,6 +112,7 @@ export function Footer() {
                   <div className="relative flex-1">
                     <input
                       type="email"
+                      suppressHydrationWarning={true}
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -122,6 +123,7 @@ export function Footer() {
                   </div>
                   <button
                     type="submit"
+                    suppressHydrationWarning={true}
                     className="px-4 py-2.5 bg-white hover:bg-zinc-200 text-zinc-950 font-bold text-xs rounded-xl flex items-center gap-1 transition-colors cursor-pointer"
                   >
                     Join <ArrowRight className="w-3.5 h-3.5" />
