@@ -482,26 +482,6 @@ export function Navbar() {
                       <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
                     </Link>
                   </div>
-
-                  {/* Dropdown Footer: Admin & Vendor Portal */}
-                  <div className="pt-1.5 pb-1 space-y-0.5">
-                    <Link
-                      href="/vendor/login"
-                      onClick={() => setIsAccountOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2 text-xs font-bold text-amber-900 bg-amber-50/70 hover:bg-amber-100/80 rounded-xl transition-colors"
-                    >
-                      <Store className="w-4 h-4 text-amber-700" />
-                      <span>Merchant / Vendor Hub</span>
-                    </Link>
-                    <Link
-                      href="/admin"
-                      onClick={() => setIsAccountOpen(false)}
-                      className="flex items-center gap-3 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 transition-colors"
-                    >
-                      <SlidersHorizontal className="w-4 h-4 text-zinc-500" />
-                      <span>Admin Control Panel</span>
-                    </Link>
-                  </div>
                 </div>
               )}
             </div>
